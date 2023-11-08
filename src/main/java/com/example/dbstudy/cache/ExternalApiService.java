@@ -1,5 +1,6 @@
 package com.example.dbstudy.cache;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +20,7 @@ public class ExternalApiService {
         return "";
     }
 
+    @Cacheable(cacheNames = "userAgeCache", key = "#userId")
     public int getAge(String userId) {
         try {
             Thread.sleep(1000);

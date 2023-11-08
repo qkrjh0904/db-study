@@ -24,7 +24,9 @@ public class UserService {
             name = externalApiService.getUserName(userId);
             stringRedisTemplate.opsForValue().set("nameKey" + userId, name, 20, TimeUnit.SECONDS);
         }
+
         int age = externalApiService.getAge(userId);
+
         stopWatch.stop();
         System.out.println("Elapsed Time: " + stopWatch.getTotalTimeSeconds());
         return UserProfileDto.of(name, age);
